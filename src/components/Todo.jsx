@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { TodoContext } from '../context/TodoContext'
 
-function Todo({id,input}) {
+function Todo({id,input,completed}) {
 
     const [todos,setTodos] = useContext(TodoContext)
 
@@ -28,10 +28,12 @@ function Todo({id,input}) {
        setTodos(filteredTodos)
     }
 
+    const isCompleted = completed ? 'checked' : '';
+
   return (
     <>
     <div className='todo-item'>
-        <input value={id} id={id} type='checkbox' onChange={e => completeTodo(e)}/>
+        <input value={id} id={id} type='checkbox' onChange={e => completeTodo(e)} checked={isCompleted}/>
         <label htmlFor={id}>{input}</label>
         <button id={id} onClick={e => deleteTodo(e)} type='button' className='delete-btn'>Delete</button>
     </div>
